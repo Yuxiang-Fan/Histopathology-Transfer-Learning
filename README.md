@@ -1,28 +1,24 @@
-# Histopathology Image Classification with Transfer Learning & Grad-CAM
+# Histopathology Image Classification with ResNet & Grad-CAM
 
-A comprehensive deep learning pipeline for classifying lung and colon histopathological images. This project demonstrates the application of Transfer Learning (using ResNet architectures) for high-accuracy medical image classification, coupled with **Grad-CAM (Gradient-weighted Class Activation Mapping)** to provide visual interpretability for the model's clinical decisions.
+This repository implements a deep learning approach for the classification of lung and colon histopathological images using Transfer Learning. The project emphasizes not only classification accuracy but also **Model Interpretability** through the use of Gradient-weighted Class Activation Mapping (Grad-CAM).
 
-## 🔬 Dataset Overview
+## 🔬 Project Scope
 
-This project utilizes the **LC25000 Dataset**, which contains histopathological images spanning 5 distinct tissue classes:
-* `colon_aca`: Colon Adenocarcinoma
-* `colon_n`: Benign Colonic Tissue
-* `lung_aca`: Lung Adenocarcinoma
-* `lung_n`: Benign Lung Tissue
-* `lung_scc`: Lung Squamous Cell Carcinoma
+The implementation utilizes the **LC25000 Dataset**, covering 5 distinct histopathological tissue classes:
+* `colon_aca` / `colon_n`: Adenocarcinoma vs. Benign colonic tissue.
+* `lung_aca` / `lung_scc` / `lung_n`: Adenocarcinoma, Squamous Cell Carcinoma, and Benign lung tissue.
 
-*Note: Due to size constraints, the dataset is not included in this repository. Please see the Quick Start section for setup instructions.*
+## 🛠️ Technical Approach
 
-## 🛠️ Tech Stack & Architecture
+* **Transfer Learning**: Employs a pre-trained **ResNet18** backbone fine-tuned on histopathological textures. The architecture leverages ImageNet-derived features while adapting the final layers to specialized medical imagery.
+* **Grad-CAM Visualization**: Integrates `torchcam` to generate heatmap overlays. This feature highlights the specific regions within the tissue slides that most influence the model's classification, providing a layer of transparency to the "black box" nature of the neural network.
+* **Data Augmentation**: Incorporates a robust PyTorch-based pipeline with `RandomResizedCrop` and `HorizontalFlip` to improve model generalization across different scanning conditions.
 
-* **Framework**: PyTorch & Torchvision
-* **Methodology**: Transfer Learning (ResNet18 pre-trained on ImageNet)
-* **Interpretability**: `torchcam` for generating heatmap overlays
-* **Data Processing**: Dynamic 80/20 train-validation splitting with runtime data augmentation (RandomResizedCrop, RandomHorizontalFlip).
+## 📁 Directory Layout
 
-## 🚀 Quick Start
-
-### 1. Environment Setup
-Clone the repository and install the required dependencies:
-```bash
-pip install -r requirements.txt
+```text
+Histopathology-Classification/
+├── src/                     # Model definitions and Grad-CAM integration
+├── notebooks/               # Comprehensive Classification & Visualization Demo
+├── requirements.txt         # Required Python packages
+└── README.md                # Project documentation
